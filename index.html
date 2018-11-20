@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+        
+    
+    <head>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.js"></script>
+            <style src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.css"></style>
+
+            <link rel="stylesheet" type="text/css" href="style.css"/>
+
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.css"/>
+            <!--script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.js"></script-->
+
+
+            <script src="slider.js"></script>
+
+        <title>psychology Colloboration Project </title>
+
+        
+    </head>
+
+    <body>
+        <div ng-app="myapp">
+            <div ng-controller="TestController" class="wrapper">
+                    <rzslider class="custom-slider" 
+                    rz-slider-model="slider.minValue"
+                    rz-slider-options="slider.options"></rzslider>
+            </div>
+        </div>
+            
+    </body>
+
+</html>

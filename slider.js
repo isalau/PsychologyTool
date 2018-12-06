@@ -11,7 +11,7 @@ myApp.controller('TestController', function TestController($scope){
         }
     };
 
-    $scope.fr_value = 1;
+    $scope.fr_value = 3;
     $scope.num_correct = 0;
 
     $scope.getRandomNumber = function(){
@@ -21,10 +21,13 @@ myApp.controller('TestController', function TestController($scope){
     $scope.nextTask = function() {
         if($scope.slider.value == $scope.randomNumber){
             $scope.num_correct = $scope.num_correct + 1;
+            //when done with repition 
             if($scope.num_correct == $scope.fr_value){
                 $scope.playTone();
+                window.location.href = "main.html";
             }
         }
+        
     };
 
     $scope.playTone = function() {

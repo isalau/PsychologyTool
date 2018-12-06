@@ -26,10 +26,10 @@
             <div ng-controller="TestController" class="wrapper" data-ng-init="getRandomNumber()">
                 <h2>Please choose {{randomNumber}} on the slider.</h2>
                     <rzslider class="custom-slider" 
-                    rz-slider-model="slider.minValue"
+                    rz-slider-model="slider.value"
                     rz-slider-options="slider.options"></rzslider>
-                    <form ng-submit="nextTask()">
-                        <input type="submit" value="Submit" ng-click="getRandomNumber()"/>
+                    <form ng-submit="getRandomNumber()">
+                        <input type="submit" value="Submit" ng-click="nextTask()"/>
                     </form>
             </div>
         </div>

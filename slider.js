@@ -2,8 +2,7 @@ var myApp = angular.module('myapp', ['rzModule','ui.bootstrap']);
 myApp.controller('TestController', function TestController($scope){
 
     $scope.slider = {
-        minValue: 10,
-        maxValue: 90,
+        value: 10,
         options: {
           floor: 0,
           ceil: 100,
@@ -12,13 +11,24 @@ myApp.controller('TestController', function TestController($scope){
         }
     };
 
+    $scope.fr_value = 1;
+    $scope.num_correct = 0;
+
     $scope.getRandomNumber = function(){
         $scope.randomNumber = Math.floor((Math.random()*100)+1);
       };
 
     $scope.nextTask = function() {
-        if($scope.slider.value == 70){
-            $scope.slider.minValue = 50;
+        if($scope.slider.value == $scope.randomNumber){
+            $scope.num_correct = $scope.num_correct + 1;
+            if($scope.num_correct == $scope.fr_value){
+                $scope.playTone();
+            }
         }
+    };
+
+    $scope.playTone = function() {
+        var audio = new Audio('audio/service-bell.mp3');
+        audio.play();
     };
 });

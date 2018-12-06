@@ -13,6 +13,7 @@ myApp.controller('TestController', function TestController($scope){
 
     $scope.fr_value = 3;
     $scope.num_correct = 0;
+    $scope.num_session = 1;
 
     $scope.getRandomNumber = function(){
         $scope.randomNumber = Math.floor((Math.random()*100)+1);
@@ -24,10 +25,18 @@ myApp.controller('TestController', function TestController($scope){
             //when done with repition 
             if($scope.num_correct == $scope.fr_value){
                 $scope.playTone();
+                //I was thinking we could create a pop-up dialog for each session
+                //and then go to main.html after the 3rd session
+
+                $scope.num_session = $scope.num_session + 1;
                 window.location.href = "main.html";
             }
         }
         
+    };
+
+    $scope.updateFR = function(fr_value) {
+        $scope.fr_value = fr_value;
     };
 
     $scope.playTone = function() {

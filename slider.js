@@ -28,8 +28,12 @@ myApp.controller('TestController', function TestController($scope){
                 //I was thinking we could create a pop-up dialog for each session
                 //and then go to main.html after the 3rd session
 
+                
+                if($scope.num_session == 3){
+                    window.location.href = "main.html";
+                }
+
                 $scope.num_session = $scope.num_session + 1;
-                window.location.href = "main.html";
             }
         }
         
@@ -40,6 +44,8 @@ myApp.controller('TestController', function TestController($scope){
     };
 
     $scope.playTone = function() {
+        //Audio reference: Daniel Simion, License: Attribution 3.0
+        //Link: http://soundbible.com/2218-Service-Bell-Help.html
         var audio = new Audio('audio/service-bell.mp3');
         audio.play();
     };

@@ -63,59 +63,59 @@
             <h2>Select Study</h2>
             <p>Click on the button to open the dropdown menu.</p>
 
-            <select id="menu">
+<!--             <select id="menu">
               <option value="1">A</option>
               <option value="4">B</option>
               <option value="8">C</option>
               <option value="16">D</option>
             </select>
              <form>
-                <input href="index.html" type="submit" value="Submit" ng-click="updateFR()"/>
-            </form>
+                <input type="submit" value="Submit" ng-click="updateFR()"/>
+            </form> -->
             <!-- <button id="go" onclick="gotosite()">Go</button> -->
 
-<!-- <div class="dropdown">
+<div class="dropdown">
             <button onclick="runStudy()" class="dropbtn">Dropdown</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a id = "option1" href="index.html" data-name ="test1" >A</a>
-                    <a id = "option2" href="index.html" data-name ="test2" >B</a>
-                    <a id = "option3" href="index.html" data-name ="test3" >C</a>
-                    <a id = "option4" href="index.html" data-name ="test4" >D</a>
+                    <a id = "option1" href="index.html?fr_value=1" data-name ="test1" >A</a>
+                    <a id = "option2" href="index.html?fr_value=4" data-name ="test2" >B</a>
+                    <a id = "option3" href="index.html?fr_value=8" data-name ="test3" >C</a>
+                    <a id = "option4" href="index.html?fr_value=16" data-name ="test4" >D</a>
                 </div>
-        </div> -->
+        </div>
         </div>
     </div>
 
-<!--<script>
+<script>
 
-    // function gotosite() {
-        // console.log("fr_value: ");
-        // var fr_value = document.getElementById("menu").value;
-        // console.log(fr_value);
-        // window.location = "index.html"; // JQuery:  $("#menu").val();
-    // }
+    function gotosite() {
+        console.log("fr_value: ");
+        var fr_value = document.getElementById("menu").value;
+        console.log(fr_value);
+         window.location = "index.html"; // JQuery:  $("#menu").val();
+     }
 
     /* When the user clicks on the button, 
     toggle between hiding and showing the dropdown content */
-    // function runStudy() {
-    //     document.getElementById("myDropdown").classList.toggle("show");
-    // }
+     function runStudy() {
+         document.getElementById("myDropdown").classList.toggle("show");
+     }
 
     // // Close the dropdown if the user clicks outside of it
-    // window.onclick = function(event) {
-    //   if (!event.target.matches('.dropbtn')) {
+     window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
 
-    //     var dropdowns = document.getElementsByClassName("dropdown-content");
-    //     var i;
-    //     for (i = 0; i < dropdowns.length; i++) {
-    //       var openDropdown = dropdowns[i];
-    //       if (openDropdown.classList.contains('show')) {
-    //         openDropdown.classList.remove('show');
-    //       }
-    //     }
-    //   }
-    // }
-</script> --> 
+         var dropdowns = document.getElementsByClassName("dropdown-content");
+         var i;
+         for (i = 0; i < dropdowns.length; i++) {
+           var openDropdown = dropdowns[i];
+           if (openDropdown.classList.contains('show')) {
+             openDropdown.classList.remove('show');
+           }
+         }
+      }
+     }
+</script>  
 
 </body>
 </html>

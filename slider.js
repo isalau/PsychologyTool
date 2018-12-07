@@ -1,5 +1,5 @@
 var myApp = angular.module('myapp', ['rzModule','ui.bootstrap']);
-myApp.controller('TestController', function TestController($scope){
+myApp.controller('TestController', function TestController($scope,$window){
 
     $scope.slider = {
         value: 10,
@@ -35,18 +35,28 @@ myApp.controller('TestController', function TestController($scope){
             $scope.num_correct = $scope.num_correct + 1;
             //when done with repition
             if($scope.num_correct == $scope.fr_value){
+                $window.alert("You may now use your phone")
                 $scope.playTone();
+
+                $scope.num_correct = 0;
                 //I was thinking we could create a pop-up dialog for each session
                 //and then go to main.html after the 3rd session
 
+                
+                if($scope.num_session == 3){
+                    $scope.num_session = 1;
+                    window.location.href = "main.html";
+                }
+
                 $scope.num_session = $scope.num_session + 1;
-                window.location.href = "main.html";
             }
         }
     };
 
   
     $scope.playTone = function() {
+        //Audio reference: Daniel Simion, License: Attribution 3.0
+        //Link: http://soundbible.com/2218-Service-Bell-Help.html
         var audio = new Audio('audio/service-bell.mp3');
         audio.play();
     };

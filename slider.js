@@ -30,6 +30,14 @@ myApp.controller('TestController', function TestController($scope,$window){
         $scope.randomNumber = Math.floor((Math.random()*100)+1);
       };
 
+    $scope.removeOverlay = function(){
+        document.getElementById('overlay').style.display = "none";
+    };
+
+    $scope.addOverlay = function(){
+        document.getElementById('overlay').style.display = "block";
+    }
+
     $scope.nextTask = function() {
       console.log("scope.fr_value in nextTask1: ");
       console.log($scope.fr_value);
@@ -38,9 +46,9 @@ myApp.controller('TestController', function TestController($scope,$window){
             $scope.num_correct = $scope.num_correct + 1;
             //when done with repition
             if($scope.num_correct == $scope.fr_value){
-                $window.alert("You may now use your phone")
+                $scope.addOverlay();
                 $scope.playTone();
-
+                setTimeout(function(){document.getElementById('overlay').style.display = "none";},30000)
                 $scope.num_correct = 0;
                 //I was thinking we could create a pop-up dialog for each session
                 //and then go to main.html after the 3rd session

@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search);
+const fr_value = urlParams.get('fr_value');
+
 var myApp = angular.module('myapp', ['rzModule','ui.bootstrap']);
 myApp.controller('TestController', function TestController($scope,$window){
 
@@ -11,7 +14,7 @@ myApp.controller('TestController', function TestController($scope,$window){
         }
     };
 
-    $scope.fr_value = 3; 
+    $scope.fr_value = fr_value; 
     $scope.num_correct = 0;
     $scope.num_session = 1;
 
@@ -61,3 +64,4 @@ myApp.controller('TestController', function TestController($scope,$window){
         audio.play();
     };
 });
+

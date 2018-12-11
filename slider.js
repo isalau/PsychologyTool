@@ -56,7 +56,6 @@ myApp.controller('TestController', function TestController($scope,$window){
         }
     };
 
-  
     $scope.playTone = function() {
         //Audio reference: Daniel Simion, License: Attribution 3.0
         //Link: http://soundbible.com/2218-Service-Bell-Help.html

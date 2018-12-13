@@ -15,6 +15,7 @@
 
 
             <script src="slider.js"></script>
+            <meta charset="utf-8"/>
 
         <title>Psychology Colloboration Project </title>
 
@@ -39,90 +40,7 @@
     	</a>
 
      <script type="text/javascript"> 
-	    //what are our headers? 
-	    var stockData = [
-	        {
-	            FR_Value: "1",
-	            Response_Frequency: "AAPL",
-	            Accuracy: "Apple Inc.",
-	            Average_Time_Between_Clicks: "132.54"
-	        },
-	        {
-	            FR_Value: "1",
-	            Response_Frequency: "INTC",
-	            Accuracy: "Intel Corporation",
-	            Average_Time_Between_Clicks: "33.45"
-	        },
-	        {
-	            FR_Value: "1",
-	            Response_Frequency: "GOOG",
-	            Accuracy: "Google Inc",
-	            Average_Time_Between_Clicks: "554.52"
-	        },
-	    ];
-	    
-    function convertArrayOfObjectsToCSV(args) {
-	        var result, ctr, keys, columnDelimiter, lineDelimiter, data;
 
-	        data = args.data || null;
-	        if (data == null || !data.length) {
-	            return null;
-	        }
-
-	        columnDelimiter = args.columnDelimiter || ',';
-	        lineDelimiter = args.lineDelimiter || '\n';
-
-	        keys = Object.keys(data[0]);
-
-	        result = '';
-	        result += keys.join(columnDelimiter);
-	        result += lineDelimiter;
-
-	        data.forEach(function(item) {
-	            ctr = 0;
-	            keys.forEach(function(key) {
-	                if (ctr > 0) result += columnDelimiter;
-
-	                result += item[key];
-	                ctr++;
-	            });
-	            result += lineDelimiter;
-	        });
-
-	        return result;
-	    }
-
-    function downloadCSV() {
-		var data, filename, link;
-		var csv = convertArrayOfObjectsToCSV({
-			data: stockData
-		});
-		if (csv == null){
-			return;
-		}
-		
-		filename = 'YourFileNameHere.csv';
-
-		var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
-
-		if (navigator.msSaveBlob){ // IE 10+
-			navigator.msSaveBlob(blob, filename)
-		}
-		else{
-			var link = document.createElement("a");
-			if (link.download !== undefined){
-
-			// feature detection, Browsers that support HTML5 download attribute
-			var url = URL.createObjectURL(blob);
-			link.setAttribute("href", url);
-			link.setAttribute("download", filename);
-			link.style = "visibility:hidden";
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-			}
-		}
-	}
 </script>  
     </body>
 

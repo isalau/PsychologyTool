@@ -1,5 +1,6 @@
 //what are our headers? 
 var Data = [];
+var clickTimes = [];
 var stockData = [
     {
         FR_Value: "1",
@@ -125,6 +126,7 @@ myApp.controller('TestController', function TestController($scope,$window){
     }
 
 
+  $scope.initalTime = 0; 
   $scope.numOfResponses = 0; 
   $scope.fr_value = fr_value; 
   $scope.num_correct = 0;
@@ -141,7 +143,9 @@ myApp.controller('TestController', function TestController($scope,$window){
   };
 
   $scope.getRandomNumber = function(){
-      $scope.randomNumber = Math.floor((Math.random()*100)+1);
+    var d = new Date();
+    $scope.initalTime = d.getTime();
+    $scope.randomNumber = Math.floor((Math.random()*100)+1);
   };
 
   $scope.nextTask = function() {
@@ -150,7 +154,12 @@ myApp.controller('TestController', function TestController($scope,$window){
     $scope.numOfResponses = $scope.numOfResponses + 1;
     console.log("last clicked time: " + $scope.numOfResponses + " times");
 
+    if ($scope.numOfResponses == 1){
+      $scope.lastClick = $scope.initalTime; 
+    }
+
     //get time of click
+     
     var d = new Date();
     var newClick = d.getTime();
     var timeBetweenClicks = newClick - $scope.lastClick; 
@@ -158,8 +167,8 @@ myApp.controller('TestController', function TestController($scope,$window){
     console.log("last clicked time: " + $scope.lastClick );
     console.log("between clicked time: " + timeBetweenClicks );
     $scope.lastClick = newClick; 
-
-
+    clickTimes.push(timeBetweenClicks);
+    console.log("Click Time Array: " + clickTimes);
 
     if($scope.slider.value == $scope.randomNumber){
       $scope.num_correct = $scope.num_correct + 1;
@@ -184,24 +193,24 @@ myApp.controller('TestController', function TestController($scope,$window){
               window.location.href = "main.html";
           }
 
+          //get average time between clicks 
+          
+          
+          
           var newData = {
-            
               FR_Value: $scope.fr_value,
               Response_Frequency: $scope.numOfResponses,
               Accuracy: $scope.accuracy,
-              Average_Time_Between_Clicks: timeBetweenClicks
+              Time_Between_Clicks: timeBetweenClicks
           };
 
             Data.push(newData);
             console.log(Data);
 
           //call function
-
           $scope.numOfResponses = 0;
           $scope.num_correct = 0;
           $scope.num_session = $scope.num_session + 1;
-
-
       }
     }
   };

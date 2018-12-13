@@ -168,10 +168,7 @@ myApp.controller('TestController', function TestController($scope,$window){
           //I was thinking we could create a pop-up dialog for each session
           //and then go to main.html after the 3rd session
 
-          if($scope.num_session == 3){
-              $scope.num_session = 1;
-              window.location.href = "main.html";
-          }
+
 
           //get average time between clicks 
           
@@ -184,8 +181,14 @@ myApp.controller('TestController', function TestController($scope,$window){
               Average_Time_Between_Clicks: avgTimeBtwClicks
           };
 
-            Data.push(newData);
-            console.log(Data);
+          Data.push(newData);
+           console.log(Data);
+
+          if($scope.num_session == 3){
+              $scope.num_session = 1;
+              downloadCSV({ filename: "YourData.csv" })
+              window.location.href = "main.html";
+          }
 
           //clear out variables
           clickTimes  = []; 
@@ -195,7 +198,7 @@ myApp.controller('TestController', function TestController($scope,$window){
           if ($scope.num_session != 1){
             console.log("Before adding 30 secs: "+ $scope.lastClick);
             $scope.lastClick = $scope.lastClick + 30000; 
-            console.log("YOu added 30 secs: "+ $scope.lastClick);
+            console.log("You added 30 secs: "+ $scope.lastClick);
           }
       }
     }

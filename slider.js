@@ -1,26 +1,6 @@
 //what are our headers? 
 var Data = [];
 var clickTimes = [];
-var stockData = [
-    {
-        FR_Value: "1",
-        Response_Frequency: "AAPL",
-        Accuracy: "Apple Inc.",
-        Average_Time_Between_Clicks: "132.54"
-    },
-    {
-        FR_Value: "1",
-        Response_Frequency: "INTC",
-        Accuracy: "Intel Corporation",
-        Average_Time_Between_Clicks: "33.45"
-    },
-    {
-        FR_Value: "1",
-        Response_Frequency: "GOOG",
-        Accuracy: "Google Inc",
-        Average_Time_Between_Clicks: "554.52"
-    },
-];
       
 function convertArrayOfObjectsToCSV(args) {
       var result, ctr, keys, columnDelimiter, lineDelimiter, data;
@@ -154,7 +134,7 @@ myApp.controller('TestController', function TestController($scope,$window){
     $scope.numOfResponses = $scope.numOfResponses + 1;
     console.log("last clicked time: " + $scope.numOfResponses + " times");
 
-    if ($scope.numOfResponses == 1){
+    if ($scope.numOfResponses == 1 && $scope.num_session == 1){
       $scope.lastClick = $scope.initalTime; 
     }
 
@@ -201,16 +181,22 @@ myApp.controller('TestController', function TestController($scope,$window){
               FR_Value: $scope.fr_value,
               Response_Frequency: $scope.numOfResponses,
               Accuracy: $scope.accuracy,
-              Time_Between_Clicks: avgTimeBtwClicks
+              Average_Time_Between_Clicks: avgTimeBtwClicks
           };
 
             Data.push(newData);
             console.log(Data);
 
-          //call function
+          //clear out variables
+          clickTimes  = []; 
           $scope.numOfResponses = 0;
           $scope.num_correct = 0;
           $scope.num_session = $scope.num_session + 1;
+          if ($scope.num_session != 1){
+            console.log("Before adding 30 secs: "+ $scope.lastClick);
+            $scope.lastClick = $scope.lastClick + 30000; 
+            console.log("YOu added 30 secs: "+ $scope.lastClick);
+          }
       }
     }
   };

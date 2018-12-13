@@ -1,4 +1,5 @@
 //what are our headers? 
+var Data = [];
 var stockData = [
     {
         FR_Value: "1",
@@ -54,7 +55,7 @@ function convertArrayOfObjectsToCSV(args) {
 function downloadCSV() {
   var data, filename, link;
   var csv = convertArrayOfObjectsToCSV({
-    data: stockData
+    data: Data
   });
   if (csv == null){
     return;
@@ -182,9 +183,25 @@ myApp.controller('TestController', function TestController($scope,$window){
               $scope.num_session = 1;
               window.location.href = "main.html";
           }
+
+          var newData = {
+            
+              FR_Value: $scope.fr_value,
+              Response_Frequency: $scope.numOfResponses,
+              Accuracy: $scope.accuracy,
+              Average_Time_Between_Clicks: timeBetweenClicks
+          };
+
+            Data.push(newData);
+            console.log(Data);
+
+          //call function
+
           $scope.numOfResponses = 0;
           $scope.num_correct = 0;
           $scope.num_session = $scope.num_session + 1;
+
+
       }
     }
   };

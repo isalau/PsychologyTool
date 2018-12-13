@@ -1,120 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.js"></script>
     <!--style src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.css"></style-->
 
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.css"/>
-    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.js"></script-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.css"/>
+  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.js"></script-->
 
-    <script src="slider.js"></script>
+  <script src="slider.js"></script>
 
-    <title>Psychology Colloboration Project </title>
+  <title>Psychology Colloboration Project </title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-    .dropbtn {
-        background-color: #3498DB;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
-
-    .dropbtn:hover, .dropbtn:focus {
-        background-color: #2980B9;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        overflow: auto;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown a:hover {background-color: #ddd;}
-
-    .show {display: block;}
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
+
 <body>
-    <div ng-app="myapp">
-        <div ng-controller="TestController" class="wrapper" data-ng-init="getRandomNumber()">
-            <h2>Select Study</h2>
-            <p>Click on the button to open the dropdown menu.</p>
-
-<!--             <select id="menu">
-              <option value="1">A</option>
-              <option value="4">B</option>
-              <option value="8">C</option>
-              <option value="16">D</option>
-            </select>
-             <form>
-                <input type="submit" value="Submit" ng-click="updateFR()"/>
-            </form> -->
-            <!-- <button id="go" onclick="gotosite()">Go</button> -->
-
-<div class="dropdown">
-            <button onclick="runStudy()" class="dropbtn">Dropdown</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a id = "option1" href="index.html?fr_value=1" data-name ="test1" >A</a>
-                    <a id = "option2" href="index.html?fr_value=4" data-name ="test2" >B</a>
-                    <a id = "option3" href="index.html?fr_value=8" data-name ="test3" >C</a>
-                    <a id = "option4" href="index.html?fr_value=16" data-name ="test4" >D</a>
-                </div>
+  <div ng-app="myapp">
+    <div ng-controller="TestController" class="wrapper" data-ng-init="getRandomNumber()">
+      <h2>Select Study</h2>
+      <p>Click on the button to open the dropdown menu.</p>
+      <div class="dropdown">
+        <button onclick="runStudy()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a id = "option1" href="index.html?fr_value=1" data-name ="test1" >A</a>
+          <a id = "option2" href="index.html?fr_value=4" data-name ="test2" >B</a>
+          <a id = "option3" href="index.html?fr_value=8" data-name ="test3" >C</a>
+          <a id = "option4" href="index.html?fr_value=16" data-name ="test4" >D</a>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 
-<script>
+  <script>
 
-    function gotosite() {
-        var fr_value = document.getElementById("menu").value;
-        console.log(fr_value);
-         window.location = "index.html"; // JQuery:  $("#menu").val();
-     }
+      function gotosite() {
+          var fr_value = document.getElementById("menu").value;
+          console.log(fr_value);
+           window.location = "index.html"; // JQuery:  $("#menu").val();
+       }
 
-    /* When the user clicks on the button, 
-    toggle between hiding and showing the dropdown content */
-     function runStudy() {
-         document.getElementById("myDropdown").classList.toggle("show");
-     }
+      /* When the user clicks on the button, 
+      toggle between hiding and showing the dropdown content */
+       function runStudy() {
+           document.getElementById("myDropdown").classList.toggle("show");
+       }
 
-    // // Close the dropdown if the user clicks outside of it
-     window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
+      // // Close the dropdown if the user clicks outside of it
+       window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
 
-         var dropdowns = document.getElementsByClassName("dropdown-content");
-         var i;
-         for (i = 0; i < dropdowns.length; i++) {
-           var openDropdown = dropdowns[i];
-           if (openDropdown.classList.contains('show')) {
-             openDropdown.classList.remove('show');
+           var dropdowns = document.getElementsByClassName("dropdown-content");
+           var i;
+           for (i = 0; i < dropdowns.length; i++) {
+             var openDropdown = dropdowns[i];
+             if (openDropdown.classList.contains('show')) {
+               openDropdown.classList.remove('show');
+             }
            }
-         }
-      }
-     }
-</script>  
+        }
+       }
+  </script>  
 
 </body>
 </html>

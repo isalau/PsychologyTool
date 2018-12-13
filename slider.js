@@ -201,7 +201,7 @@ myApp.controller('TestController', function TestController($scope,$window){
               FR_Value: $scope.fr_value,
               Response_Frequency: $scope.numOfResponses,
               Accuracy: $scope.accuracy,
-              Time_Between_Clicks: timeBetweenClicks
+              Time_Between_Clicks: avgTimeBtwClicks
           };
 
             Data.push(newData);

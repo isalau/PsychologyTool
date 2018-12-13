@@ -104,6 +104,7 @@ myApp.controller('TestController', function TestController($scope,$window){
   $scope.num_correct = 0;
   $scope.num_session = 1;
   $scope.lastClick = 0;
+  $scope.accuracy = 0; 
 
   $scope.updateFR = function(fr_value) {
     var fr_value = document.getElementById("menu").value;
@@ -138,20 +139,25 @@ myApp.controller('TestController', function TestController($scope,$window){
       $scope.num_correct = $scope.num_correct + 1;
       //when done with repition
       if($scope.num_correct == $scope.fr_value){
+          //determine accuracy 
+          $scope.accuracy = ($scope.fr_value/$scope.numOfResponses); 
+          console.log("Accuracy = " + $scope.accuracy); 
+           
           //add number of responses numOfResponses to csv file
           //append to dictionary  
           $window.alert("You may now use your phone")
           $scope.playTone();
 
-          $scope.num_correct = 0;
+          
           //I was thinking we could create a pop-up dialog for each session
           //and then go to main.html after the 3rd session
 
           if($scope.num_session == 3){
               $scope.num_session = 1;
-              $scope.numOfResponses = 0; 
               window.location.href = "main.html";
           }
+          $scope.numOfResponses = 0;
+          $scope.num_correct = 0;
           $scope.num_session = $scope.num_session + 1;
       }
     }

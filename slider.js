@@ -152,7 +152,6 @@ myApp.controller('TestController', function TestController($scope,$window){
               $scope.numOfResponses = 0; 
               window.location.href = "main.html";
           }
-
           $scope.num_session = $scope.num_session + 1;
       }
     }

@@ -195,7 +195,7 @@ myApp.controller('TestController', function TestController($scope,$window){
 
           //get average time between clicks 
           
-          
+          avgTimeBtwClicks = $scope.averageTimeClicks(clickTimes)
           
           var newData = {
               FR_Value: $scope.fr_value,
@@ -215,6 +215,14 @@ myApp.controller('TestController', function TestController($scope,$window){
     }
   };
 
+  $scope.averageTimeClicks = function(timeBtwClicks){
+    var sum = 0;
+    for(var i = 0; i < timeBtwClicks.length; i++){
+      sum += timeBtwClicks[i]
+    }
+
+    return sum/timeBtwClicks.length
+  };
   $scope.playTone = function() {
       //Audio reference: Daniel Simion, License: Attribution 3.0
       //Link: http://soundbible.com/2218-Service-Bell-Help.html

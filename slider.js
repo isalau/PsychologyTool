@@ -162,13 +162,10 @@ myApp.controller('TestController', function TestController($scope,$window){
           //append to dictionary  
           $scope.addOverlay();
           $scope.playTone();
-          setTimeout(function(){document.getElementById('overlay').style.display = "none";},30000)
+          setTimeout(function(){$scope.playTone(); document.getElementById('overlay').style.display = "none";},30000)
           $scope.num_correct = 0;
           
-          //I was thinking we could create a pop-up dialog for each session
-          //and then go to main.html after the 3rd session
-
-
+          
 
           //get average time between clicks 
           
@@ -181,13 +178,15 @@ myApp.controller('TestController', function TestController($scope,$window){
               Average_Time_Between_Clicks: avgTimeBtwClicks
           };
 
-          Data.push(newData);
-           console.log(Data);
+            Data.push(newData);
+            console.log(Data);
+
+          //I was thinking we could create a pop-up dialog for each session
+          //and then go to main.html after the 3rd session
 
           if($scope.num_session == 3){
-              $scope.num_session = 1;
-              downloadCSV({ filename: "YourData.csv" })
-              window.location.href = "main.html";
+            $scope.num_session = 1;
+            window.location.href = "main.html";
           }
 
           //clear out variables
@@ -198,7 +197,7 @@ myApp.controller('TestController', function TestController($scope,$window){
           if ($scope.num_session != 1){
             console.log("Before adding 30 secs: "+ $scope.lastClick);
             $scope.lastClick = $scope.lastClick + 30000; 
-            console.log("You added 30 secs: "+ $scope.lastClick);
+            console.log("YOu added 30 secs: "+ $scope.lastClick);
           }
       }
     }

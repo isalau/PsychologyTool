@@ -186,6 +186,7 @@ myApp.controller('TestController', function TestController($scope,$window){
 
           if($scope.num_session == 3){
             $scope.num_session = 1;
+            downloadCSV({ filename: "YourData.csv" })
             window.location.href = "main.html";
           }
 

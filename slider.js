@@ -42,7 +42,7 @@ function downloadCSV() {
     return;
   }
   
-  filename = 'YourFileNameHere.csv';
+  filename = 'ParticipantResults.csv';
 
   var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
 
@@ -184,11 +184,15 @@ myApp.controller('TestController', function TestController($scope,$window){
           //I was thinking we could create a pop-up dialog for each session
           //and then go to main.html after the 3rd session
 
-          if($scope.num_session == 3){
+          //Removed - will allow study admin to control number of sessions
+          //          and when to go back to homepage
+          /*if($scope.num_session == 3){
             $scope.num_session = 1;
             downloadCSV({ filename: "YourData.csv" })
             window.location.href = "main.html";
-          }
+          }*/
+
+
 
           //clear out variables
           clickTimes  = []; 

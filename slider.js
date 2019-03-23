@@ -1,7 +1,8 @@
 //what are our headers? 
 var Data = [];
 var clickTimes = [];
-      
+
+
 function convertArrayOfObjectsToCSV(args) {
       var result, ctr, keys, columnDelimiter, lineDelimiter, data;
 
@@ -68,6 +69,7 @@ function downloadCSV() {
 const urlParams = new URLSearchParams(window.location.search);
 const fr_value = urlParams.get('fr_value');
 
+
 var myApp = angular.module('myapp', ['rzModule','ui.bootstrap']);
 myApp.controller('TestController', function TestController($scope,$window){
 
@@ -84,6 +86,7 @@ myApp.controller('TestController', function TestController($scope,$window){
     $scope.fr_value = fr_value; 
     $scope.num_correct = 0;
     $scope.num_session = 1;
+    var timer;
 
     $scope.updateFR = function(fr_value) {
       var fr_value = document.getElementById("menu").value;
@@ -126,28 +129,35 @@ myApp.controller('TestController', function TestController($scope,$window){
   $scope.getRandomNumber = function(){
     var d = new Date();
     $scope.initalTime = d.getTime();
-    $scope.randomNumber = Math.floor((Math.random()*100)+1);
+    $scope.randomNumber = Math.floor((Math.random()*100)+1);   
 
-    
+    if($scope.num_session == 1){
+      $window.clearTimeout(timer);
+      timer = $window.setTimeout(function(){$scope.playEndSession();},120000);
+    }/*else{
+      $window.clearTimeout(timer);
+    }*/
   };
 
   $scope.noInteraction = function(){
   //  setTimeout(function(){$scope.playTone();},120000);
+    
+    //timer = null;
+
+    $window.clearTimeout(timer);
 
     if($scope.newSession == true){
       //no interaction after 2 minutes
       //account for 30 seconds between sessions 
-      setTimeout(function(){$scope.playTone();$scope.newSession = false;},150000);
+      timer = $window.setTimeout(function(){$scope.playEndSession();$scope.newSession = false;},150000);
       $scope.newSession = false;
     }else{
       //no interaction after 2 minutes
-      setTimeout(function(){$scope.playTone();},120000);
+      timer = $window.setTimeout(function(){$scope.playEndSession();},120000);
     }
   };
 
   $scope.nextTask = function() {  
-
-    //$scope.noInteraction();
 
     console.log("scope.fr_value in nextTask: " + $scope.fr_value );
 
@@ -175,6 +185,8 @@ myApp.controller('TestController', function TestController($scope,$window){
     if($scope.slider.value == $scope.randomNumber)
       correctNumber = true;
 
+    //return information for each submission
+    //null for averages 
     var eachSubmission = {
       FR_Value: $scope.fr_value,
       Time_Between_Clicks: timeBetweenClicks,
@@ -185,6 +197,7 @@ myApp.controller('TestController', function TestController($scope,$window){
     };
 
     Data.push(eachSubmission);
+    
 
     if($scope.slider.value == $scope.randomNumber){
       $scope.num_correct = $scope.num_correct + 1;
@@ -262,4 +275,11 @@ myApp.controller('TestController', function TestController($scope,$window){
       var audio = new Audio('audio/service-bell.mp3');
       audio.play();
   };
+
+  $scope.playEndSession = function() {
+    //Audio reference: Mike Koenig, License: Attribution 3.0
+    //Link: http://soundbible.com/128-Metal-Gong.html
+    var audio = new Audio('audio/gong.mp3');
+    audio.play();
+  }
 });

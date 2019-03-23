@@ -93,9 +93,9 @@ myApp.controller('TestController', function TestController($scope,$window){
       window.location.href = "index.html";
     };
 
-    $scope.getRandomNumber = function(){
-        $scope.randomNumber = Math.floor((Math.random()*100)+1);
-      };
+    //$scope.getRandomNumber = function(){
+     //   $scope.randomNumber = Math.floor((Math.random()*100)+1);
+    //};
 
     $scope.removeOverlay = function(){
         document.getElementById('overlay').style.display = "none";
@@ -113,6 +113,7 @@ myApp.controller('TestController', function TestController($scope,$window){
   $scope.num_session = 1;
   $scope.lastClick = 0;
   $scope.accuracy = 0; 
+  $scope.newSession = false;
 
   $scope.updateFR = function(fr_value) {
     var fr_value = document.getElementById("menu").value;
@@ -126,9 +127,28 @@ myApp.controller('TestController', function TestController($scope,$window){
     var d = new Date();
     $scope.initalTime = d.getTime();
     $scope.randomNumber = Math.floor((Math.random()*100)+1);
+
+    
   };
 
-  $scope.nextTask = function() {
+  $scope.noInteraction = function(){
+  //  setTimeout(function(){$scope.playTone();},120000);
+
+    if($scope.newSession == true){
+      //no interaction after 2 minutes
+      //account for 30 seconds between sessions 
+      setTimeout(function(){$scope.playTone();$scope.newSession = false;},150000);
+      $scope.newSession = false;
+    }else{
+      //no interaction after 2 minutes
+      setTimeout(function(){$scope.playTone();},120000);
+    }
+  };
+
+  $scope.nextTask = function() {  
+
+    //$scope.noInteraction();
+
     console.log("scope.fr_value in nextTask: " + $scope.fr_value );
 
     $scope.numOfResponses = $scope.numOfResponses + 1;
@@ -150,9 +170,25 @@ myApp.controller('TestController', function TestController($scope,$window){
     clickTimes.push(timeBetweenClicks);
     console.log("Click Time Array: " + clickTimes);
 
+    var correctNumber = false;
+
+    if($scope.slider.value == $scope.randomNumber)
+      correctNumber = true;
+
+    var eachSubmission = {
+      FR_Value: $scope.fr_value,
+      Time_Between_Clicks: timeBetweenClicks,
+      Correct_Number: correctNumber,
+      Response_Frequency: null,
+      Accuracy: null,
+      Average_Time_Between_Clicks: null
+    };
+
+    Data.push(eachSubmission);
+
     if($scope.slider.value == $scope.randomNumber){
       $scope.num_correct = $scope.num_correct + 1;
-      //when done with repition
+      //when done with repetition
       if($scope.num_correct == $scope.fr_value){
           //determine accuracy 
           $scope.accuracy = ($scope.fr_value/$scope.numOfResponses); 
@@ -164,15 +200,17 @@ myApp.controller('TestController', function TestController($scope,$window){
           $scope.playTone();
           setTimeout(function(){$scope.playTone(); document.getElementById('overlay').style.display = "none";},30000)
           $scope.num_correct = 0;
-          
+          $scope.newSession = true;
           
 
           //get average time between clicks 
           
           avgTimeBtwClicks = $scope.averageTimeClicks(clickTimes)
-          
+          console.log("Hey: ",$scope.fr_value)
           var newData = {
               FR_Value: $scope.fr_value,
+              Time_Between_Clicks: null,
+              Correct_Number: null,
               Response_Frequency: $scope.numOfResponses,
               Accuracy: $scope.accuracy,
               Average_Time_Between_Clicks: avgTimeBtwClicks
@@ -202,9 +240,11 @@ myApp.controller('TestController', function TestController($scope,$window){
           if ($scope.num_session != 1){
             console.log("Before adding 30 secs: "+ $scope.lastClick);
             $scope.lastClick = $scope.lastClick + 30000; 
-            console.log("YOu added 30 secs: "+ $scope.lastClick);
+            console.log("You added 30 secs: "+ $scope.lastClick);
           }
       }
+
+      
     }
   };
 

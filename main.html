@@ -24,8 +24,9 @@
   <div ng-app="myapp">
     <div ng-controller="TestController" class="wrapper" data-ng-init="getRandomNumber()">
       <h2>Select Study</h2>
-      <p>Click on the button to open the dropdown menu.</p>
-      <div class="dropdown">
+      <p>Click on the button to start the study.</p>
+      <button onclick="location.href='index.html?fr_value=2'">Start</button>
+      <!--div class="dropdown">
         <button onclick="runStudy()" class="dropbtn">Dropdown</button>
         <div id="myDropdown" class="dropdown-content">
           <a id = "option1" href="index.html?fr_value=1" data-name ="test1" >A</a>
@@ -33,7 +34,7 @@
           <a id = "option3" href="index.html?fr_value=8" data-name ="test3">C</a>
           <a id = "option4" href="index.html?fr_value=16" data-name ="test4">D</a>
         </div>
-      </div>
+      </div-->
     </div>
   </div>
 

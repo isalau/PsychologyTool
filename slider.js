@@ -258,7 +258,13 @@ myApp.controller('TestController', function TestController($scope,$window){
           }
 
         //update FR value 
-        $scope.fr_idx = $scope.fr_idx + 1
+        if($scope.fr_value[$scope.fr_idx] == 25){
+          downloadCSV();
+          window.location = "main.html";
+        }
+        else {
+          $scope.fr_idx = $scope.fr_idx + 1
+        }
       }
 
       

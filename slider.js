@@ -111,7 +111,8 @@ myApp.controller('TestController', function TestController($scope,$window){
 
   $scope.initalTime = 0; 
   $scope.numOfResponses = 0; 
-  $scope.fr_value = fr_value; 
+  $scope.fr_value = [2,4,6,9,12,15,20,25];//fr_value; 
+  $scope.fr_idx = 0;
   $scope.num_correct = 0;
   $scope.num_session = 1;
   $scope.lastClick = 0;
@@ -159,7 +160,7 @@ myApp.controller('TestController', function TestController($scope,$window){
 
   $scope.nextTask = function() {  
 
-    console.log("scope.fr_value in nextTask: " + $scope.fr_value );
+    console.log("scope.fr_value in nextTask: " + $scope.fr_value[$scope.fr_idx]);
 
     $scope.numOfResponses = $scope.numOfResponses + 1;
     console.log("last clicked time: " + $scope.numOfResponses + " times");
@@ -188,7 +189,7 @@ myApp.controller('TestController', function TestController($scope,$window){
     //return information for each submission
     //null for averages 
     var eachSubmission = {
-      FR_Value: $scope.fr_value,
+      FR_Value: $scope.fr_value[$scope.fr_idx],
       Time_Between_Clicks: timeBetweenClicks,
       Correct_Number: correctNumber,
       Response_Frequency: null,
@@ -202,9 +203,9 @@ myApp.controller('TestController', function TestController($scope,$window){
     if($scope.slider.value == $scope.randomNumber){
       $scope.num_correct = $scope.num_correct + 1;
       //when done with repetition
-      if($scope.num_correct == $scope.fr_value){
+      if($scope.num_correct == $scope.fr_value[$scope.fr_idx]){
           //determine accuracy 
-          $scope.accuracy = ($scope.fr_value/$scope.numOfResponses); 
+          $scope.accuracy = ($scope.fr_value[$scope.fr_idx]/$scope.numOfResponses); 
           console.log("Accuracy = " + $scope.accuracy); 
            
           //add number of responses numOfResponses to csv file
@@ -219,9 +220,9 @@ myApp.controller('TestController', function TestController($scope,$window){
           //get average time between clicks 
           
           avgTimeBtwClicks = $scope.averageTimeClicks(clickTimes)
-          console.log("Hey: ",$scope.fr_value)
+          console.log("Hey: ",$scope.fr_value[$scope.fr_idx])
           var newData = {
-              FR_Value: $scope.fr_value,
+              FR_Value: $scope.fr_value[$scope.fr_idx],
               Time_Between_Clicks: null,
               Correct_Number: null,
               Response_Frequency: $scope.numOfResponses,
@@ -255,6 +256,9 @@ myApp.controller('TestController', function TestController($scope,$window){
             $scope.lastClick = $scope.lastClick + 30000; 
             console.log("You added 30 secs: "+ $scope.lastClick);
           }
+
+        //update FR value 
+        $scope.fr_idx = $scope.fr_idx + 1
       }
 
       
